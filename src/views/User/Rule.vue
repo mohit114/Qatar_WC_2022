@@ -9,9 +9,10 @@
 					<v-card-text  style="padding-left: 40px">
 						<ul>
 							<li class="margintop"><h3>Predictions can only be made till 2 hours before the match begins.</h3></li>
-							<li class="margintop"><h3>Other players prediction will be revealed only after the prediction time is over.</h3></li>			
+							<li class="margintop"><h3>Other players prediction will be revealed only after the prediction time is over.</h3></li>
+							<li class="margintop"><h3>After the prediction time is over an email will also be sent having predictions of all the players for that match.</h3></li>			
 							<li class="margintop"><h3>Game score till the end of regular or extra time will be taken into account. Penalty shootout score will not be considered.</h3></li>
-							<li class="margintop"><h3>Points will be updated soon after the game is over. Except the late one.</h3></li>						
+							<li class="margintop"><h3>Points will be updated soon after the game is over.</h3></li>						
 						</ul>
 					</v-card-text>
 				</v-card>	

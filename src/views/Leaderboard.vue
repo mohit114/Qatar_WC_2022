@@ -11,6 +11,7 @@
 		      :headers="standingTable.headings"
 		      :items="allScores"
 		      hide-default-footer
+              disable-pagination
 		      class="elevation-1"
 		    >
 		      <template  v-slot:item="{ item }">
@@ -85,7 +86,8 @@ export default {
                         Score: boardData.data().score
                     }
                 )                                                
-            })           
+            })   
+            console.log(board)        
             this.$store.dispatch('getLeaderboard', board)                          
         }
 	}

@@ -113,7 +113,7 @@ export default {
   methods: {
     addPrediction: function(matchId, leftPrediction, rightPrediction, isFavourite, matchNumber) {
 				if(leftPrediction == null || rightPrediction == null){
-					//this.$store.dispatch('setSnackBar', {"color": "error", "text": "Please provide a valid number."})
+					this.$store.dispatch('setSnackBar', {"color": "error", "text": "Please provide a valid number."})
 					return
 				}
 				var leftCountryScore = leftPrediction.trim()
@@ -129,7 +129,7 @@ export default {
 					this.$store.dispatch('addPrediction', payload)
 				}
 				else{
-					//this.$store.dispatch('setSnackBar', {"color": "error", "text": "Please provide a valid number."})
+					this.$store.dispatch('setSnackBar', {"color": "error", "text": "Please provide a valid number."})
 				}
 			},
       isValidInteger: function(value){

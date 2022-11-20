@@ -86,8 +86,7 @@ export default {
                         Score: boardData.data().score
                     }
                 )                                                
-            })   
-            console.log(board)        
+            })        
             this.$store.dispatch('getLeaderboard', board)                          
         }
 	}

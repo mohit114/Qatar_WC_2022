@@ -8,6 +8,10 @@ import LoginView from '../views/User/Login.vue'
 import SignUpView from '../views/User/SignUp.vue'
 import SupportView from '../views/User/Support.vue'
 import RuleView from '../views/User/Rule.vue'
+import AdminView from '../views/Admin/Admin.vue'
+import AdminPanelView from '../views/Admin/MatchUpdate.vue'
+import AuthGuard from './auth-guard'
+import AuthGuardAdmin from './auth-admin-guard'
 
 Vue.use(VueRouter)
 
@@ -16,7 +20,7 @@ const routes = [
     path: '/',
     name: 'match',
     component: MatchesView,
-    //beforeEnter: AuthGuard
+    beforeEnter: AuthGuard
   },
   {
     path: '/about',
@@ -40,28 +44,36 @@ const routes = [
     path: '/leaderboard',
     name: 'leaderboard',
     component: LeaderBoardView,
+    beforeEnter: AuthGuard
   },
   {
     path: '/support',
     name: 'support',
     component: SupportView,
-    //beforeEnter: AuthGuard
+    beforeEnter: AuthGuard
   },
   {
     path: '/rules',
     name: 'rule',
     component: RuleView,
-    //beforeEnter: AuthGuard
+    beforeEnter: AuthGuard
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: AdminView,
+    beforeEnter: AuthGuardAdmin
+  },
+  {
+    path: '/admin/update/match',
+    name: 'adminPanel',
+    component: AdminPanelView,
+    beforeEnter: AuthGuardAdmin
   }
 ]
 
 const router = new VueRouter({  
   routes
-})
-
-router.beforeEach((to, from, next) => {
-  if (to.name !== 'login' && to.name !== 'signUp' && getAuth().currentUser == null) next({ name: 'login' })
-  else next()
 })
 
 export default router

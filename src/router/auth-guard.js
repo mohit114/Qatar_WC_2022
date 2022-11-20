@@ -1,7 +1,7 @@
-import {store} from '../store/index'
+import { getAuth } from "firebase/auth";
 
 export default (to, from, next) => {
-  if (store.getters.user) {
+  if (getAuth().currentUser !== null) {
     next()
   } else {
     next('/login')

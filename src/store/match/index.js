@@ -140,6 +140,14 @@ export default {
             }, 2000);           
         },
         async submitFinalScore({commit}, payload){
+
+            const matchRef = doc(db, "fq_matches", payload.matchId);
+            await updateDoc(matchRef, {
+                leftCountryScore: payload.leftCountryScore,
+                rightCountryScore: payload.rightCountryScore,
+                isMatchCompleted: true
+            });
+
             const q = query(
                 collection(db, "fq_userPredictions"),                    
                 where("matchId", "==", payload.matchId)                                                       

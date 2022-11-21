@@ -69,35 +69,7 @@
 </v-app>
 </div>
 </template>
-
 <script>
-
-import { db } from './firebaseDatabaseInit';
-import { doc, getDoc, getDocs, addDoc, collection } from "firebase/firestore";
-
-// async function test(){
-//     const querySnapshot = await getDocs(collection(db, "fq_users"));
-//     querySnapshot.forEach((doc) => {
-//       // doc.data() is never undefined for query doc snapshots
-//       console.log(doc.id, " => ", doc.data());
-//     }); 
-//     const docRef = doc(db, "fq_users", "doc_id_here");
-//     const docSnap = await getDoc(docRef);
-
-//     if (docSnap.exists()) {
-//       console.log("Document data:", docSnap.data());
-//     } else {
-//       // doc.data() will be undefined in this case
-//       console.log("No such document!");
-//     }
-
-//     // const docRefPost = await addDoc(collection(db, "fq_users"), {
-//     //   name: "Tokyo",
-//     //   country: "Japan"
-//     // });
-//     // console.log("Document written with ID: ", docRefPost.id);
-// }
-
 export default {
   name: 'App',
   data: () => ({
@@ -121,7 +93,7 @@ export default {
       }
       if(this.IsUserAdmin) {
         menuItems = [
-          {icon: 'mdi-ghost', title: 'Admin', link: '/admin'},
+          {icon: 'mdi-ghost', title: 'Admin', link: '/admin/update/match'},
           {icon: 'mdi-chart-bar', title: 'Leaderboard', link: '/leaderboard'},
           {icon: 'mdi-soccer', title: 'Matches', link: '/'},
           {icon: 'mdi-clipboard-text', title: 'Rules', link: '/rules'},
@@ -135,7 +107,7 @@ export default {
     },
     IsUserAdmin () {
       if(this.$store.getters.user !== null && this.$store.getters.user !== undefined){        
-        if(this.$store.getters.user.id === 'ashdfkdjf'){    //process.env.ADMIN_ID       
+        if(this.$store.getters.user.id === 'R3JBaiB1FKXUHvuXtjCDir826T62'){    //process.env.ADMIN_ID       
           return true
         }
         else

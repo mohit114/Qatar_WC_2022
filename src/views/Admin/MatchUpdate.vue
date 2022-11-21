@@ -53,7 +53,8 @@
               id="scoreleft"
               name="input-1"
               label=""  
-              v-model="match.leftCountryScore"                         
+              v-model="match.leftCountryScore"    
+              :disabled="match.isMatchCompleted"                     
           >
           </v-text-field>
         </v-list-item-title>
@@ -70,7 +71,8 @@
                             id="scoreright"
                             name="input-2"
                             label=""   
-                            v-model="match.rightCountryScore"                         
+                            v-model="match.rightCountryScore" 
+                            :disabled="match.isMatchCompleted"                             
                           ></v-text-field>
         </v-list-item-title>
       </v-list-item>
@@ -80,6 +82,7 @@
       <v-btn 
         color="purple"
         text
+        :disabled="match.isPredictionTimeOver"
         @click="lockMatch(match.matchId, match.matchNumber, match.leftCountry, match.rightCountry)"
       >
         Lock
@@ -87,6 +90,7 @@
       <v-btn
         color="purple"
         text
+        :disabled="match.isMatchCompleted" 
         @click="submitFinalScore(match.matchId, match.matchNumber, match.leftPrediction, match.rightPrediction)"
       >
         Save

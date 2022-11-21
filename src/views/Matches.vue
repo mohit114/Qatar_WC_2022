@@ -72,7 +72,7 @@
   >
     <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title v-if="!match.leftCountryScore" class="text-h5">
+        <v-list-item-title v-if="!match.leftCountryScoregit " class="text-h5">
           Match - {{match.matchNumber}}
         </v-list-item-title>
         <v-list-item-title v-else class="text-h5">

@@ -35,7 +35,7 @@
 <script>
 import { getAuth } from "firebase/auth";
 import { db } from '../firebaseDatabaseInit';
-import { query, where, getDocs, collection } from "firebase/firestore";
+import { query, where, orderBy, getDocs, collection } from "firebase/firestore";
 export default {
     data: () => ({   
         search: '',
@@ -74,7 +74,8 @@ export default {
             })            
             const leaderboardQuery = query(
                 collection(db, "fq_leaderboard"),                                                       
-                where("groupId", "==", userGroupId)                    
+                where("groupId", "==", userGroupId),
+                //orderBy("score", "desc")                    
             ); 
             const leaderSnap = await getDocs(leaderboardQuery)
             leaderSnap.forEach((boardData) => {                  
@@ -86,7 +87,8 @@ export default {
                         Score: boardData.data().score
                     }
                 )                                                
-            })        
+            })             
+            board.sort((a, b) => b.Score - a.Score);    
             this.$store.dispatch('getLeaderboard', board)                          
         }
 	}

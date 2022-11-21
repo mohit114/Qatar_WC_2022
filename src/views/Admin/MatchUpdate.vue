@@ -87,7 +87,7 @@
       <v-btn
         color="purple"
         text
-        @click="submitFinalScore(match.matchId, match.leftPrediction, match.rightPrediction)"
+        @click="submitFinalScore(match.matchId, match.matchNumber, match.leftPrediction, match.rightPrediction)"
       >
         Save
       </v-btn>
@@ -111,7 +111,7 @@ export default {
 		}
   },
   methods: {
-    submitFinalScore: function(matchId, leftCountryScore, rightCountryScore) {
+    submitFinalScore: function(matchId, matchNumber, leftCountryScore, rightCountryScore) {
 				if(leftCountryScore == null || rightCountryScore == null){
 					this.$store.dispatch('setSnackBar', {"color": "error", "text": "Please provide a valid number."})
 					return
@@ -121,6 +121,7 @@ export default {
 				if(this.isValidInteger(leftCountryScore) && this.isValidInteger(rightCountryScore)){
 					let payload = {						
 						matchId: matchId,
+                        matchNumber: matchNumber,
 						leftCountryScore: leftCountryScore,
 						rightCountryScore: rightCountryScore						
 					}

@@ -149,6 +149,7 @@ export default {
                 let leftPrediction = predDoc.data().leftPrediction
                 let rightPrediction = predDoc.data().rightPrediction 
                 let userUpdatingScore = 0
+                let leaderboardId = ''
                 
                 const leaderboardQuery = query(
                     collection(db, "fq_leaderboard"),                                                       
@@ -156,7 +157,8 @@ export default {
                 );   
                 const boardSnap =  await getDocs(leaderboardQuery);                                              
                 boardSnap.forEach((userScore) => {  
-                    userUpdatingScore = userScore.data().score                                 
+                    userUpdatingScore = userScore.data().score 
+                    leaderboardId = userScore.id                                
                 })  
 
                 if((parseInt(leftPrediction, 10) - parseInt(rightPrediction, 10) == 0) && (parseInt(payload.leftCountryScore, 10) - parseInt(payload.rightCountryScore, 10) == 0)){
@@ -175,13 +177,14 @@ export default {
                 }
                 else if (leftPrediction == payload.leftCountryScore || rightPrediction == payload.rightCountryScore){
                     userUpdatingScore = userUpdatingScore + 2;
-                }
-
-                const leaderBoardRef = doc(db, "fq_leaderboard", predDoc.id);
+                }        
+                const leaderBoardRef = doc(db, "fq_leaderboard", leaderboardId);
                 await updateDoc(leaderBoardRef, {
                     score: userUpdatingScore
                 });
-            })  
+                console.log(`Score updated for user : ${predDoc.data().userId} - ${userUpdatingScore}`)
+            })
+            commit('setSnackBar', {"color": "success", "text": "Successfully updated score for match " + payload.matchNumber + "."})
         }
     },
     getters: {

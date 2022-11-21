@@ -72,8 +72,11 @@
   >
     <v-list-item two-line>
       <v-list-item-content>
-        <v-list-item-title class="text-h5">
+        <v-list-item-title v-if="!match.leftCountryScore" class="text-h5">
           Match - {{match.matchNumber}}
+        </v-list-item-title>
+        <v-list-item-title v-else class="text-h5">
+          Match - {{match.matchNumber}} ({{match.leftCountryScore}} - {{match.rightCountryScore}}) <span style="color: #DC4C46">*leaderboard updated!</span>
         </v-list-item-title>
         <v-list-item-subtitle>{{match.matchDate}}</v-list-item-subtitle>
       </v-list-item-content>

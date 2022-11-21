@@ -91,7 +91,7 @@
         color="purple"
         text
         :disabled="match.isMatchCompleted" 
-        @click="submitFinalScore(match.matchId, match.matchNumber, match.leftPrediction, match.rightPrediction)"
+        @click="submitFinalScore(match.matchId, match.matchNumber, match.leftCountryScore, match.rightCountryScore)"
       >
         Save
       </v-btn>
@@ -120,15 +120,15 @@ export default {
 					this.$store.dispatch('setSnackBar', {"color": "error", "text": "Please provide a valid number."})
 					return
 				}
-				var leftCountryScore = leftCountryScore.trim()
-				var rightCountryScore = rightCountryScore.trim()
+				leftCountryScore = leftCountryScore.trim()
+				rightCountryScore = rightCountryScore.trim()
 				if(this.isValidInteger(leftCountryScore) && this.isValidInteger(rightCountryScore)){
 					let payload = {						
 						matchId: matchId,
                         matchNumber: matchNumber,
 						leftCountryScore: leftCountryScore,
 						rightCountryScore: rightCountryScore						
-					}
+					}          
 					this.$store.dispatch('submitFinalScore', payload)
 				}
 				else{

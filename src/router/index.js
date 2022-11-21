@@ -6,6 +6,7 @@ import MatchesView from '../views/Matches.vue'
 import LeaderBoardView from '../views/Leaderboard.vue'
 import LoginView from '../views/User/Login.vue'
 import SignUpView from '../views/User/SignUp.vue'
+import PasswordResetView from '../views/User/ForgotPassword.vue'
 import SupportView from '../views/User/Support.vue'
 import RuleView from '../views/User/Rule.vue'
 import AdminView from '../views/Admin/Admin.vue'
@@ -39,6 +40,11 @@ const routes = [
     path: '/register',
     name: 'signUp',
     component: SignUpView
+  },
+  {
+    path: '/resetpassword',
+    name: 'ResetPassword',
+    component: PasswordResetView
   },
   {
     path: '/leaderboard',

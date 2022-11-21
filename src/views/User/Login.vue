@@ -48,6 +48,9 @@
                       <v-flex xs12 mt-4 text-xs-right>
                       <router-link to="/register">Don't have an account? Register here</router-link>
                     </v-flex>
+                    <v-flex xs12 mt-4 text-xs-right>
+                      <router-link to="/resetpassword">Forgot password? Click here</router-link>
+                    </v-flex>
                   </v-layout>
                 </form>
               </v-container>
@@ -135,7 +138,7 @@ export default {
     },
   methods: {
         onSignin () {
-            this.$store.dispatch('signUserIn', {email: this.email, password: this.password})
+          this.$store.dispatch('signUserIn', {email: this.email, password: this.password})            
         },
         onDismissed () {
             this.$store.dispatch('clearError')

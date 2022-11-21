@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { db } from '../../firebaseDatabaseInit';
 import { addDoc, where, collection, query, getDocs } from "firebase/firestore";
 
@@ -98,6 +98,19 @@ export default {
             commit('setLoading', false)
             commit('setError', errorMessage)       
         });       
+      },
+      resetPassword ({commit}, email) {
+        commit('setLoading', true)        
+        const auth = getAuth();
+          sendPasswordResetEmail(auth, email)
+            .then(() => {
+              commit('setLoading', false)
+              commit('setSnackBar', {"color": "success", "text": "Successfully sent a password reset link. Please check the spam folder if email has not arrived in the inbox."})          
+            })
+            .catch((error) => {     
+                commit('setLoading', false)                  
+                commit('setSnackBar', {"color": "error", "text": error.message})                       
+            });
       },
       autoSignIn ({commit}, payload) {
         commit('setUser', {

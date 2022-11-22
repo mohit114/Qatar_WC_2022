@@ -6,6 +6,7 @@
             </v-card>                                            
           </v-flex>
 		<v-layout>
+            
 		<v-flex xs12 sm10 offset-sm1 mt-3>
 		    <v-data-table
 		      :headers="standingTable.headings"
@@ -18,10 +19,20 @@
 		      <tr>
 		        <td v-bind:style="{
 		      		color: item.UserEmail == getuseremail ? '#DC4C46' : 'black'
-		      	}" style="width: 50px">{{ item.Rank }}</td>
-		        <td v-bind:style="{
+		      	}" style="width: 50px">{{ item.Rank }}</td>                
+		        <td v-if="!item.IsVeteran" v-bind:style="{
 		      		color: item.UserEmail == getuseremail ? '#DC4C46' : 'black'
-		      	}">{{ item.UserName }}</td>
+		      	}">{{item.UserName}}</td>
+                <td v-else ><v-chip
+                    class=""                    
+                    color="primary"                    
+                    >
+                    <v-icon left>
+                        mdi-fire
+                    </v-icon>
+                    <span>{{item.UserName}}</span>
+                    </v-chip>
+                </td>
 		        <td align="center" v-bind:style="{
 		      		color: item.UserEmail == getuseremail ? '#DC4C46' : 'black'
 		      	}">{{ item.Score }}</td>
@@ -37,6 +48,9 @@ import { getAuth } from "firebase/auth";
 import { db } from '../firebaseDatabaseInit';
 import { query, where, orderBy, getDocs, collection } from "firebase/firestore";
 export default {
+    components: {
+        
+    },
     data: () => ({   
         search: '',
         standingTable: {
@@ -84,7 +98,8 @@ export default {
                     {
                         UserEmail: boardData.data().userEmail,
                         UserName: boardData.data().userName,
-                        Score: boardData.data().score
+                        Score: boardData.data().score,
+                        IsVeteran: boardData.data().IsVeteran
                     }
                 )                                                
             })             

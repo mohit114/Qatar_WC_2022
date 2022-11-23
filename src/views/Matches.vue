@@ -66,10 +66,21 @@
               <v-flex xs12 style="text-align:center">
               <h3 style="color: red">Note*: Nepal Time</h3>			
   		      </v-flex>
+            <v-flex xs12 sm4 offset-sm4>
+		  			 <v-select
+			          :items="match_select_items"
+			          v-model="selectedFilter"
+			          label="Select"
+			          single-line
+			          auto
+			          hide-details
+		    		></v-select>	
+		  	</v-flex>
     <v-card v-for="(match) in allMatches" :key="match.matchNumber"
     class="mx-auto mt-10"
     max-width="630"
   >
+  <div v-show="matchFilter(match.isMatchCompleted)">
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title v-if="!match.leftCountryScore" class="text-h5">
@@ -151,6 +162,7 @@
         Save
       </v-btn>
     </v-card-actions>
+  </div>
   </v-card>
                                     
     </v-container>
@@ -162,6 +174,8 @@ import { db } from '../firebaseDatabaseInit';
 import { query, where, getDocs, collection } from "firebase/firestore";
 export default {
   data: () => ({ 
+    match_select_items: ['All Matches', 'Upcoming Matches', 'Completed Matches'],
+    selectedFilter: 'Upcoming Matches',
     predictionModalHeading: '',
     dialog: false,
     headings: [],   
@@ -242,7 +256,15 @@ export default {
               }, 500);
             }) 
             //this.dialog = true
-      },    
+      },  
+      matchFilter: function(isMatchOver) {
+	   			if(this.selectedFilter === 'All Matches')
+	   				return true
+	   			else if (this.selectedFilter === 'Upcoming Matches')
+	   				return !isMatchOver
+	   			else
+	   				return isMatchOver
+	   		},
       isValidInteger: function(value){
 				if(value == "0")
 					return true

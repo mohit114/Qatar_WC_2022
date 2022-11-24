@@ -120,7 +120,8 @@ export default {
                 }) 
             })
             setTimeout(() => {
-                fetch('https://boiling-journey-17710.herokuapp.com/items/email/send',{
+                fetch('https://fifa-world-cup-2022-qatar.onrender.com/items/email/send',{
+                //fetch('https://boiling-journey-17710.herokuapp.com/items/email/send',{
                 //fetch('http://localhost:5000/items/email/send', {
                 method: 'post',                
                 headers: {

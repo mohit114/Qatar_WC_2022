@@ -1,5 +1,13 @@
 # fifa-world-cup-2022
 
+## View project
+```
+https://fifa-world-cup-2022-qata-6432b.web.app/
+
+username: mohitmaharjan7@gmail.com
+password: maharjan@123
+```
+
 ## Project setup
 ```
 npm install
